@@ -23,7 +23,7 @@ import DumbWaiter from "./pages/Products/DumbWaiter";
 export default function App() {
   return (
     <div>
-      <HashRouter basename="/sigma_elevators/">
+      <HashRouter>
         <Navbar />
         <ScrollToTop />
         <Routes>
