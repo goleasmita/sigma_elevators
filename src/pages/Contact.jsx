@@ -8,11 +8,7 @@ export default function Contact() {
     AOS.init({ duration: 1200, once: true });
   }, []);
 
-  const sendEmail = () => {
-    window.location.href = "mailto:sanjay@sigmalifts.co.in";
-  };
-
-  const message = `Hello Sigma Lifts, I am ${userName} and I would like to inquire about your services.`;
+  const message = `Hello Sigma Lifts,I would like to enquire about your services.`;
   return (
     <div className="contact-container " style={{ paddingTop: "150px" }}>
       <h2 className="contact-title" data-aos="fade-down">
