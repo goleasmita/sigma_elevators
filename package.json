@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://goleasmita.github.io/sigma_lifts_elevators/",
+  "homepage": "https://goleasmita.github.io/sigma_elevators/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
