@@ -204,16 +204,6 @@ p {
   background-color: transparent;
 }
 
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
-  transform: rotate(45deg);
-  top: 10px;
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
-  transform: rotate(-45deg);
-  top: 10px;
-}
-
 /* Animations */
 @keyframes dropdownPop {
   0% {
