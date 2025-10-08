@@ -23,10 +23,16 @@ export default function Navbar() {
 
     const handleLinkClick = () => {
       if (navbarCollapse.classList.contains("show")) {
-        const collapse = new window.bootstrap.Collapse(navbarCollapse, {
-          toggle: false,
-        });
-        collapse.hide();
+        if (window.bootstrap && window.bootstrap.Collapse) {
+          // ✅ Safely collapse using Bootstrap JS
+          const collapse = new window.bootstrap.Collapse(navbarCollapse, {
+            toggle: false,
+          });
+          collapse.hide();
+        } else {
+          // ✅ Fallback: manually hide if Bootstrap is not globally available
+          navbarCollapse.classList.remove("show");
+        }
       }
     };
 
