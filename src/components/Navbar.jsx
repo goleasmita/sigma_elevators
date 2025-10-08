@@ -21,18 +21,21 @@ export default function Navbar() {
     const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
     const navbarCollapse = document.querySelector(".navbar-collapse");
 
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (navbarCollapse.classList.contains("show")) {
-          new window.bootstrap.Collapse(navbarCollapse).hide();
-        }
-      });
-    });
+    const handleLinkClick = () => {
+      if (navbarCollapse.classList.contains("show")) {
+        const collapse = new window.bootstrap.Collapse(navbarCollapse, {
+          toggle: false,
+        });
+        collapse.hide();
+      }
+    };
+
+    navLinks.forEach((link) => link.addEventListener("click", handleLinkClick));
 
     return () => {
-      navLinks.forEach((link) => {
-        link.removeEventListener("click", () => {});
-      });
+      navLinks.forEach((link) =>
+        link.removeEventListener("click", handleLinkClick)
+      );
     };
   }, []);
 
