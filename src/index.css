@@ -165,6 +165,55 @@ p {
   margin-left: 8px;
 }
 
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: none !important;
+  position: relative;
+  width: 25px;
+  height: 3px;
+  /* background-color: #0d6efd; */
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background-color: #c01313;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before {
+  top: 7px;
+  right: 0px;
+}
+
+.navbar-toggler-icon::after {
+  top: 20px;
+  right: 0px;
+}
+
+/* When expanded */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 10px;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 10px;
+}
+
 /* Animations */
 @keyframes dropdownPop {
   0% {

@@ -17,15 +17,34 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (navbarCollapse.classList.contains("show")) {
+          new window.bootstrap.Collapse(navbarCollapse).hide();
+        }
+      });
+    });
+
+    return () => {
+      navLinks.forEach((link) => {
+        link.removeEventListener("click", () => {});
+      });
+    };
+  }, []);
+
   // EmailJS send function
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_mejxigd", // replace with your EmailJS service ID
-        "template_3infbpt", // replace with your EmailJS template ID
+        "service_mejxigd",
+        "template_3infbpt",
         form.current,
-        "C5uydIPy16hhzedwF" // replace with your EmailJS public key
+        "C5uydIPy16hhzedwF"
       )
       .then(
         (result) => {

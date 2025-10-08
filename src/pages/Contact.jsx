@@ -85,10 +85,7 @@ export default function Contact() {
           </details>
           <details>
             <summary>How can I request a new lift installation?</summary>
-            <p>
-              You can contact us directly or fill the enquiry form from the top
-              navbar.
-            </p>
+            <p>You can contact us directly or fill the enquiry form.</p>
           </details>
           <details>
             <summary>What areas do you serve?</summary>
