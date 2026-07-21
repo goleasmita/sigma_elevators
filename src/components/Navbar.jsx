@@ -2,11 +2,50 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo_sigma.png";
 import { IoHome } from "react-icons/io5";
-import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const form = useRef();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "2bfef2de-3e7e-48b1-bf39-7541bdadf92d");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      event.target.reset();
+
+      // Close Bootstrap Modal
+      const modalElement = document.getElementById("exampleModal");
+      const modal = window.bootstrap.Modal.getInstance(modalElement);
+
+      if (modal) modal.hide();
+
+      Swal.fire({
+        icon: "success",
+        title: "Enquiry Sent!",
+        text: "Thank you. We will contact you soon.",
+        confirmButtonColor: "#0d6efd",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Failed to send enquiry. Please try again.",
+        confirmButtonColor: "#dc3545",
+      });
+    }
+  };
 
   // Navbar scroll effect
   useEffect(() => {
@@ -40,7 +79,7 @@ export default function Navbar() {
 
     return () => {
       navLinks.forEach((link) =>
-        link.removeEventListener("click", handleLinkClick)
+        link.removeEventListener("click", handleLinkClick),
       );
     };
   }, []);
@@ -53,7 +92,7 @@ export default function Navbar() {
         "service_mejxigd",
         "template_3infbpt",
         form.current,
-        "C5uydIPy16hhzedwF"
+        "C5uydIPy16hhzedwF",
       )
       .then(
         (result) => {
@@ -62,7 +101,7 @@ export default function Navbar() {
         },
         (error) => {
           alert("Failed to send enquiry, try again.");
-        }
+        },
       );
   };
 
@@ -177,7 +216,12 @@ export default function Navbar() {
                 aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form ref={form} onSubmit={sendEmail}>
+              <form onSubmit={onSubmit}>
+                <input
+                  type="hidden"
+                  name="subject"
+                  value="New Enquiry From Sigma Lifts"
+                />
                 <div className="mb-3">
                   <label className="form-label">Full Name</label>
                   <input

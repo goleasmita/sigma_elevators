@@ -2,10 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: myfont;
+  letter-spacing: 1px;
+}
+
+@font-face {
+  font-family: myfont;
+  src: url(./assets/fonts/Arimo-VariableFont_wght.ttf);
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   background: #fdfdfd;
   color: #222;
   line-height: 1.6;
@@ -24,19 +30,33 @@ h5 {
 
 p {
   font-size: 1rem;
-  color: #555;
+  color: #6e6e6e;
 }
 
 /* =========================
    IMAGES
 ========================= */
-.home2 img {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+.home-base {
+  /* margin: 0 auto 20px; */
+  border: 5px solid rgb(232, 113, 113);
+  border-radius: 50% 50% 0 0;
+  overflow: hidden; /* Important */
+  transition: transform 0.4s ease;
+  margin: auto;
+  padding: 0px;
+  height: 460px;
+  width: 460px;
 }
 
-.home2 img:hover {
+.home-base img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fits image inside the container */
+  transition: transform 0.4s ease;
+}
+
+.home-base:hover img {
   transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================
@@ -45,13 +65,6 @@ p {
 .carousel-inner img {
   height: 70vh;
   object-fit: cover;
-}
-p {
-  font-family: fontp;
-}
-@font-face {
-  font-family: fontp;
-  src: url(./assets/fonts/PTSerif-Regular.ttf);
 }
 
 /* Topbar */
@@ -75,7 +88,9 @@ p {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
   z-index: 1050; /* lower than topbar */
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Scrolled navbar style */
@@ -115,7 +130,9 @@ p {
   font-weight: 700;
   text-shadow: 0 0 10px rgb(212, 212, 212);
   letter-spacing: 1px;
-  transition: color 0.3s, transform 0.3s;
+  transition:
+    color 0.3s,
+    transform 0.3s;
 }
 .navbar-brand:hover {
   transform: scale(1.1);
@@ -322,10 +339,9 @@ p {
   letter-spacing: 3px;
   text-transform: uppercase;
   font-weight: 700;
-  color: #f1f1f1;
+  color: #eae4e4;
   margin-bottom: 10px;
   animation: fadeInDown 1.2s ease-in-out;
-  color: rgb(195, 193, 176);
 }
 
 .main-title {
@@ -460,6 +476,18 @@ p {
   border-radius: 6px;
 }
 
+.home-main {
+  background: linear-gradient(
+    43deg,
+    #ba3432 0%,
+    #bd3a38 50%,
+    #cf7b72 50%,
+    #de5858 100%
+  );
+  padding-bottom: 40px;
+  color: rgb(244, 235, 235);
+}
+
 .home h2 {
   font-family: myfont;
 }
@@ -483,6 +511,16 @@ p {
 }
 .home2 p {
   font-size: 17px;
+}
+
+@media (max-width: 1000px) {
+  .home-sub {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .home-main {
+    background: #ba3432;
+  }
 }
 
 .contact-container {
@@ -751,7 +789,9 @@ p {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 .gearless-gallery .image-card img {
   width: 100%;
@@ -1167,7 +1207,9 @@ button.btn-danger:hover {
   border-radius: 8px;
   font-weight: 600;
   padding: 8px 16px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
 }
 
 #exampleModal .btn-primary:hover {
@@ -1241,7 +1283,9 @@ button.btn-danger:hover {
   width: 300px;
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, border 0.3s;
+  transition:
+    transform 0.3s,
+    border 0.3s;
   /* border-top: 5px solid transparent; */
 }
 
@@ -1426,12 +1470,17 @@ button.btn-danger:hover {
 
   /* ✅ auto animation */
   animation: pulse 2s infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px #25d366, 0 0 40px #25d366, 0 0 60px #25d366;
+  box-shadow:
+    0 0 20px #25d366,
+    0 0 40px #25d366,
+    0 0 60px #25d366;
 }
 
 .whatsapp-float img {
@@ -1480,7 +1529,9 @@ button.enquiry-btn:hover {
     width: 60px;
     font-size: 14px;
     animation: pulse2 2s infinite;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 }
 

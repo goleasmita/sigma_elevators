@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ProductsMenu from "./ProductsMenu";
 import { Outlet, useLocation } from "react-router-dom";
 import product from "../../assets/product.png";
@@ -46,6 +46,23 @@ export default function Products() {
   ];
 
   const location = useLocation();
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (location.pathname !== "/products") {
+      const yOffset = -120; // Adjust according to your navbar height
+
+      const element = contentRef.current;
+
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }
+  }, [location.pathname]);
 
   return (
     <div className="container-fluid">
@@ -57,6 +74,7 @@ export default function Products() {
 
         {/* Right Content */}
         <div
+          ref={contentRef}
           className="col-lg-9 gearless-page products-page mt-4"
           style={{ overflow: "auto" }}>
           {/* ✅ Show only when route is exactly /products */}
