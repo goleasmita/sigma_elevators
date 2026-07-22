@@ -59,10 +59,17 @@ p {
   transform: scale(1.05);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 550px) {
   .home-base {
-    width: 350px;
-    height: 400px;
+    height: 300px;
+    width: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-base {
+    height: 200px;
+    width: 200px;
   }
 }
 
@@ -527,6 +534,9 @@ p {
   }
   .home-main {
     background: #ba3432;
+  }
+  .home2 img {
+    /* height: 370px !important; */
   }
 }
 

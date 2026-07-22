@@ -241,6 +241,7 @@ export default function Navbar() {
                   name="location"
                   className="form-control custom-input"
                   placeholder="Enter location"
+                  required
                 />
               </div>
             </div>

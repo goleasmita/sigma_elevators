@@ -152,7 +152,7 @@ export default function Home() {
             <div className="home-base ">
               <img src={mission} className="img-fluid" alt="" />
             </div>
-            <h1 style={{ fontSize: "40px", fontWeight: "600" }}>Our Mission</h1>
+            <h1 style={{ fontSize: "30px", fontWeight: "600" }}>Our Mission</h1>
             <p style={{ fontSize: "20px" }}>
               The goal is to implement operational measures to improve customer
               satisfaction and operational efficiency.
@@ -162,7 +162,7 @@ export default function Home() {
             <div className="home-base">
               <img src={vision} alt="" />
             </div>
-            <h1 style={{ fontSize: "40px", fontWeight: "600" }}>Our Vision</h1>
+            <h1 style={{ fontSize: "30px", fontWeight: "600" }}>Our Vision</h1>
             <p style={{ fontSize: "20px" }}>
               Our vision is to achieve leadership in elevator market in India
               through our strong values, innovative, advanced and competitive
@@ -173,10 +173,11 @@ export default function Home() {
       </div>
 
       {/* our services  */}
+
       <div className="container home2  text-center " style={{ width: "80%" }}>
         <h1 className="mb-5">Explore our services</h1>
-        <div className="row  g-5">
-          <div className="col-lg-4" data-aos="fade-up">
+        <div className="row align-items-start">
+          <div className="col-lg-4 pb-5" data-aos="fade-up">
             <img
               src={lifts}
               alt=""
@@ -199,7 +200,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="col-lg-4" data-aos="zoom-in">
+          <div className="col-lg-4 pb-5" data-aos="zoom-in">
             <img
               src={lifts2}
               alt=""
@@ -222,7 +223,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="col-lg-4" data-aos="fade-left">
+          <div className="col-lg-4 mb-0" data-aos="fade-left">
             <img
               src={lifts3}
               alt=""
