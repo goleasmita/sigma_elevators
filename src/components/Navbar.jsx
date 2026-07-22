@@ -21,7 +21,6 @@ export default function Navbar() {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (data.success) {
         event.target.reset();
@@ -49,8 +48,8 @@ export default function Navbar() {
           text: data.message,
         });
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
 
       Swal.fire({
         icon: "error",
