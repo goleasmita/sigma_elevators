@@ -3,9 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo_sigma.png";
 import { IoHome } from "react-icons/io5";
 import Swal from "sweetalert2";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const form = useRef();
 
   const onSubmit = async (event) => {
@@ -24,10 +27,14 @@ export default function Navbar() {
       console.log(data);
 
       if (data.success) {
+        event.target.reset();
+
         Swal.fire({
           icon: "success",
           title: "Enquiry Sent!",
           text: "Thank you. We will contact you soon.",
+        }).then(() => {
+          setShowModal(false);
         });
       } else {
         Swal.fire({
@@ -62,12 +69,8 @@ export default function Navbar() {
 
     const handleLinkClick = () => {
       if (navbarCollapse.classList.contains("show")) {
-        if (window.bootstrap && window.bootstrap.Collapse) {
-          // ✅ Safely collapse using Bootstrap JS
-          const collapse = new window.bootstrap.Collapse(navbarCollapse, {
-            toggle: false,
-          });
-          collapse.hide();
+        if (navbarCollapse.classList.contains("show")) {
+          navbarCollapse.classList.remove("show");
         } else {
           // ✅ Fallback: manually hide if Bootstrap is not globally available
           navbarCollapse.classList.remove("show");
@@ -111,8 +114,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className="btn ms-3 text-light enquiry-btn"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
+                onClick={() => setShowModal(true)}>
                 Enquiry
               </button>
             </div>
@@ -176,78 +178,92 @@ export default function Navbar() {
       </div>
 
       {/* EmailJS Enquiry Modal */}
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Enquiry Form
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <form onSubmit={onSubmit}>
+      {/* Enquiry Modal */}
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        centered
+        size="lg"
+        dialogClassName="custom-modal-dialog"
+        contentClassName="custom-modal-content">
+        <Modal.Header closeButton className="custom-modal-header">
+          <Modal.Title>Enquiry Form</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body className="custom-modal-body">
+          <form onSubmit={onSubmit}>
+            <input
+              type="hidden"
+              name="subject"
+              value="New Enquiry From Sigma Lifts"
+            />
+
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Full Name</label>
                 <input
-                  type="hidden"
-                  name="subject"
-                  value="New Enquiry From Sigma Lifts"
+                  type="text"
+                  name="name"
+                  className="form-control custom-input"
+                  placeholder="Enter your name"
+                  required
                 />
-                <div className="mb-3">
-                  <label className="form-label">Full Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    placeholder="Enter your name"
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Phone</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    className="form-control"
-                    placeholder="Enter your phone number"
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Message</label>
-                  <textarea
-                    name="message"
-                    className="form-control"
-                    rows="3"
-                    placeholder="Write your enquiry here..."
-                    required></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary w-100">
-                  Send
-                </button>
-              </form>
+              </div>
+
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control custom-input"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
+
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  className="form-control custom-input"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Location</label>
+                <input
+                  type="text"
+                  name="location"
+                  className="form-control custom-input"
+                  placeholder="Enter location"
+                />
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Message</label>
+              <textarea
+                name="message"
+                rows="5"
+                className="form-control custom-input"
+                placeholder="Write your enquiry here..."
+                required></textarea>
+            </div>
+
+            <Button
+              type="submit"
+              variant="primary"
+              className="w-100 py-2 fw-bold custom-submit-btn">
+              Send Enquiry
+            </Button>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

@@ -1602,3 +1602,114 @@ button.enquiry-btn:hover {
   flex: 1;
   padding: 30px;
 }
+
+/* ===== Modal ===== */
+
+.custom-modal-content {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(139, 0, 0, 0.25);
+}
+
+.custom-modal-header {
+  background: linear-gradient(135deg, #b22222, #8b0000);
+  color: #fff;
+  border-bottom: none;
+  padding: 18px 25px;
+}
+
+.custom-modal-header .btn-close {
+  filter: invert(1);
+}
+
+.custom-modal-body {
+  background: #fff;
+  padding: 30px;
+}
+
+/* ===== Labels ===== */
+
+.form-label {
+  color: #8b0000;
+  font-weight: 600;
+}
+
+/* ===== Inputs ===== */
+
+.custom-input {
+  height: 48px;
+  border: 1px solid rgb(182, 16, 16) !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+textarea.custom-input {
+  height: auto;
+  resize: none;
+}
+
+.custom-input::placeholder {
+  color: #999;
+}
+
+/* Focus Effect */
+
+.custom-input:focus {
+  border-color: #b22222;
+  box-shadow: 0 0 0 0.25rem rgba(178, 34, 34, 0.25);
+  outline: none;
+}
+
+/* ===== Submit Button ===== */
+
+.custom-submit-btn {
+  background: linear-gradient(135deg, #b22222, #8b0000);
+  border: 1px solid red !important;
+  outline: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.custom-submit-btn:hover {
+  background: linear-gradient(135deg, #8b0000, #600000);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+}
+
+.custom-submit-btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(178, 34, 34, 0.35);
+}
+
+/* ===== Close Button ===== */
+
+.btn-close:focus {
+  box-shadow: none;
+}
+
+/* ===== Form Controls ===== */
+
+.form-control {
+  border-radius: 8px;
+}
+
+.form-control:focus {
+  border: 1px solid red;
+
+  box-shadow: 0 0 0 0.25rem rgba(178, 34, 34, 0.2);
+}
+
+/* ===== Selection ===== */
+
+::selection {
+  background: #b22222;
+  color: white;
+}
+
+.form-control.custom-input:focus {
+  border-color: #b22222 !important;
+  box-shadow: 0 0 0 0.25rem rgba(178, 34, 34, 0.35) !important;
+  outline: none !important;
+}
