@@ -59,6 +59,13 @@ p {
   transform: scale(1.05);
 }
 
+@media (max-width: 1000px) {
+  .home-base {
+    width: 350px;
+    height: 400px;
+  }
+}
+
 /* =========================
    CAROUSEL CUSTOM
 ========================= */
@@ -1509,7 +1516,8 @@ button.enquiry-btn {
   border: none;
   font-weight: bolder;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
+  /* font-size: 12px !important; */
 }
 
 button.enquiry-btn:hover {
@@ -1523,11 +1531,12 @@ button.enquiry-btn:hover {
     bottom: 85px;
     z-index: 999;
     display: block;
-    left: -4px;
+    left: -3px;
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    font-size: 14px;
+    height: 63px;
+    width: 63px;
+    font-size: 11px;
+    padding: 10px !important;
     animation: pulse2 2s infinite;
     transition:
       transform 0.3s ease,
