@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo_sigma.png";
 import { IoHome } from "react-icons/io5";
 import Swal from "sweetalert2";
+import { Modal, Collapse } from "bootstrap";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,11 +34,8 @@ export default function Navbar() {
         }).then(() => {
           const modalElement = document.getElementById("exampleModal");
 
-          if (window.bootstrap && modalElement) {
-            const modal =
-              window.bootstrap.Modal.getInstance(modalElement) ||
-              new window.bootstrap.Modal(modalElement);
-
+          if (modalElement) {
+            const modal = Modal.getOrCreateInstance(modalElement);
             modal.hide();
           }
         });
@@ -54,7 +52,7 @@ export default function Navbar() {
       Swal.fire({
         icon: "error",
         title: "Network Error",
-        text: err.message,
+        text: error.message,
       });
     }
   };
@@ -74,15 +72,9 @@ export default function Navbar() {
 
     const handleLinkClick = () => {
       if (navbarCollapse.classList.contains("show")) {
-        if (window.bootstrap && window.bootstrap.Collapse) {
-          // ✅ Safely collapse using Bootstrap JS
-          const collapse = new window.bootstrap.Collapse(navbarCollapse, {
-            toggle: false,
-          });
+        if (navbarCollapse.classList.contains("show")) {
+          const collapse = Collapse.getOrCreateInstance(navbarCollapse);
           collapse.hide();
-        } else {
-          // ✅ Fallback: manually hide if Bootstrap is not globally available
-          navbarCollapse.classList.remove("show");
         }
       }
     };
