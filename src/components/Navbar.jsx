@@ -30,7 +30,6 @@ export default function Navbar() {
           icon: "success",
           title: "Enquiry Sent!",
           text: "Thank you. We will contact you soon.",
-          confirmButtonColor: "#0d6efd",
         }).then(() => {
           const modalElement = document.getElementById("exampleModal");
 
@@ -39,13 +38,17 @@ export default function Navbar() {
             modal.hide();
 
             setTimeout(() => {
+              // Remove Bootstrap modal classes
               document.body.classList.remove("modal-open");
-              document.body.style.overflow = "";
+
+              // Restore scrolling
+              document.body.style.overflow = "auto";
               document.body.style.paddingRight = "";
 
+              // Remove any leftover backdrop
               document
                 .querySelectorAll(".modal-backdrop")
-                .forEach((el) => el.remove());
+                .forEach((backdrop) => backdrop.remove());
             }, 300);
           }
         });
