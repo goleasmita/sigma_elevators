@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo_sigma.png";
 import { IoHome } from "react-icons/io5";
 import Swal from "sweetalert2";
-import { Modal, Collapse } from "bootstrap";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,63 +11,38 @@ export default function Navbar() {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const formData = new FormData(event.target);
-      formData.append("access_key", "2bfef2de-3e7e-48b1-bf39-7541bdadf92d");
+    const formData = new FormData(event.target);
 
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+    formData.append("access_key", "2bfef2de-3e7e-48b1-bf39-7541bdadf92d");
 
-      const data = await response.json();
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
 
-      if (data.success) {
-        event.target.reset();
+    const data = await response.json();
 
-        Swal.fire({
-          icon: "success",
-          title: "Enquiry Sent!",
-          text: "Thank you. We will contact you soon.",
-        }).then(() => {
-          const modalElement = document.getElementById("exampleModal");
+    if (data.success) {
+      event.target.reset();
 
-          if (modalElement) {
-            const modal = Modal.getOrCreateInstance(modalElement);
-            modal.hide();
+      // Close Bootstrap Modal
+      const modalElement = document.getElementById("exampleModal");
+      const modal = window.bootstrap.Modal.getInstance(modalElement);
 
-            setTimeout(() => {
-              document.body.classList.remove("modal-open");
-
-              // Remove inline styles completely
-              document.body.removeAttribute("style");
-
-              // Remove any remaining backdrop
-              document
-                .querySelectorAll(".modal-backdrop")
-                .forEach((el) => el.remove());
-
-              // Hide modal if Bootstrap didn't
-              modalElement.classList.remove("show");
-              modalElement.style.display = "none";
-              modalElement.setAttribute("aria-hidden", "true");
-            }, 300);
-          }
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: data.message,
-        });
-      }
-    } catch (error) {
-      console.error(error);
+      if (modal) modal.hide();
 
       Swal.fire({
+        icon: "success",
+        title: "Enquiry Sent!",
+        text: "Thank you. We will contact you soon.",
+        confirmButtonColor: "#0d6efd",
+      });
+    } else {
+      Swal.fire({
         icon: "error",
-        title: "Network Error",
-        text: error.message,
+        title: "Oops!",
+        text: "Failed to send enquiry. Please try again.",
+        confirmButtonColor: "#dc3545",
       });
     }
   };
@@ -88,9 +62,15 @@ export default function Navbar() {
 
     const handleLinkClick = () => {
       if (navbarCollapse.classList.contains("show")) {
-        if (navbarCollapse.classList.contains("show")) {
-          const collapse = Collapse.getOrCreateInstance(navbarCollapse);
+        if (window.bootstrap && window.bootstrap.Collapse) {
+          // ✅ Safely collapse using Bootstrap JS
+          const collapse = new window.bootstrap.Collapse(navbarCollapse, {
+            toggle: false,
+          });
           collapse.hide();
+        } else {
+          // ✅ Fallback: manually hide if Bootstrap is not globally available
+          navbarCollapse.classList.remove("show");
         }
       }
     };
@@ -103,6 +83,27 @@ export default function Navbar() {
       );
     };
   }, []);
+
+  // EmailJS send function
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_mejxigd",
+        "template_3infbpt",
+        form.current,
+        "C5uydIPy16hhzedwF",
+      )
+      .then(
+        (result) => {
+          alert("Enquiry sent successfully!");
+          form.current.reset();
+        },
+        (error) => {
+          alert("Failed to send enquiry, try again.");
+        },
+      );
+  };
 
   return (
     <div>
