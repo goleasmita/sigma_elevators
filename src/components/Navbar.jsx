@@ -33,9 +33,14 @@ export default function Navbar() {
           confirmButtonColor: "#0d6efd",
         }).then(() => {
           const modalElement = document.getElementById("exampleModal");
-          const modal =
-            window.bootstrap.Modal.getOrCreateInstance(modalElement);
-          modal.hide();
+
+          if (window.bootstrap && modalElement) {
+            const modal =
+              window.bootstrap.Modal.getInstance(modalElement) ||
+              new window.bootstrap.Modal(modalElement);
+
+            modal.hide();
+          }
         });
       } else {
         Swal.fire({
