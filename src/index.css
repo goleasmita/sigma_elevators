@@ -1613,7 +1613,7 @@ button.enquiry-btn:hover {
 }
 
 .custom-modal-header {
-  background: linear-gradient(135deg, #b22222, #8b0000);
+  background: linear-gradient(135deg, #d23030, #cb1717);
   color: #fff;
   border-bottom: none;
   padding: 18px 25px;
@@ -1664,7 +1664,7 @@ textarea.custom-input {
 /* ===== Submit Button ===== */
 
 .custom-submit-btn {
-  background: linear-gradient(135deg, #b22222, #8b0000);
+  background: linear-gradient(135deg, #d23030, #cb1717);
   border: 1px solid red !important;
   outline: none;
   border-radius: 8px;
@@ -1674,7 +1674,7 @@ textarea.custom-input {
 }
 
 .custom-submit-btn:hover {
-  background: linear-gradient(135deg, #8b0000, #600000);
+  background: linear-gradient(135deg, #8b0000, #af0909);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
 }
