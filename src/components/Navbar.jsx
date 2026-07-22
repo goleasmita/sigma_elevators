@@ -37,6 +37,16 @@ export default function Navbar() {
           if (modalElement) {
             const modal = Modal.getOrCreateInstance(modalElement);
             modal.hide();
+
+            setTimeout(() => {
+              document.body.classList.remove("modal-open");
+              document.body.style.overflow = "";
+              document.body.style.paddingRight = "";
+
+              document
+                .querySelectorAll(".modal-backdrop")
+                .forEach((el) => el.remove());
+            }, 300);
           }
         });
       } else {
