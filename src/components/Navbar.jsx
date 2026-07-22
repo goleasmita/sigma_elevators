@@ -11,38 +11,38 @@ export default function Navbar() {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
+    try {
+      const formData = new FormData(event.target);
+      formData.append("access_key", "2bfef2de-3e7e-48b1-bf39-7541bdadf92d");
 
-    formData.append("access_key", "2bfef2de-3e7e-48b1-bf39-7541bdadf92d");
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      event.target.reset();
-
-      // Close Bootstrap Modal
-      const modalElement = document.getElementById("exampleModal");
-      const modal = window.bootstrap.Modal.getInstance(modalElement);
-
-      if (modal) modal.hide();
-
-      Swal.fire({
-        icon: "success",
-        title: "Enquiry Sent!",
-        text: "Thank you. We will contact you soon.",
-        confirmButtonColor: "#0d6efd",
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
       });
-    } else {
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Enquiry Sent!",
+          text: "Thank you. We will contact you soon.",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: data.message,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+
       Swal.fire({
         icon: "error",
-        title: "Oops!",
-        text: "Failed to send enquiry. Please try again.",
-        confirmButtonColor: "#dc3545",
+        title: "Network Error",
+        text: err.message,
       });
     }
   };
@@ -83,27 +83,6 @@ export default function Navbar() {
       );
     };
   }, []);
-
-  // EmailJS send function
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_mejxigd",
-        "template_3infbpt",
-        form.current,
-        "C5uydIPy16hhzedwF",
-      )
-      .then(
-        (result) => {
-          alert("Enquiry sent successfully!");
-          form.current.reset();
-        },
-        (error) => {
-          alert("Failed to send enquiry, try again.");
-        },
-      );
-  };
 
   return (
     <div>
