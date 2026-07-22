@@ -38,17 +38,20 @@ export default function Navbar() {
             modal.hide();
 
             setTimeout(() => {
-              // Remove Bootstrap modal classes
               document.body.classList.remove("modal-open");
 
-              // Restore scrolling
-              document.body.style.overflow = "auto";
-              document.body.style.paddingRight = "";
+              // Remove inline styles completely
+              document.body.removeAttribute("style");
 
-              // Remove any leftover backdrop
+              // Remove any remaining backdrop
               document
                 .querySelectorAll(".modal-backdrop")
-                .forEach((backdrop) => backdrop.remove());
+                .forEach((el) => el.remove());
+
+              // Hide modal if Bootstrap didn't
+              modalElement.classList.remove("show");
+              modalElement.style.display = "none";
+              modalElement.setAttribute("aria-hidden", "true");
             }, 300);
           }
         });
